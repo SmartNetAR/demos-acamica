@@ -1,0 +1,7 @@
+{"auto":
+  [
+    {"marca": "ford", "modelo": 1999, "patente": "ABC123"},
+    {"marca": "fiat", "modelo": 2010, "patente": "MNC123"},
+    {"marca": "toyota", "modelo": 2015, "patente": "NNA123"}
+  ]
+}

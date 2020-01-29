@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js</title>
+  <script src="funciones.js"></script>
+
+  <style>
+    body {
+      padding: 30px;
+      background-color: gray;
+    }
+    section {
+      background-color: white;
+      padding: 30px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+    <!-- elementos para ingresar el datos y el botón para calcular -->
+    <section>
+      <label for="edadHumana">Ingrese el año de Nacimiento de un Humano</label>
+      <input type="text" id="text-edad-humana" val="">
+      <button id="btn-edad-humana" onclick="clickBtnEdadHumana()">Calcular</button>
+    </section>
+      
+    </br></br>
+  
+    <!-- elementos para ingresar el datos y el botón para calcular -->
+    <section>
+      <label for="edadMascota">Ingrese el año de Nacimiento de un Gato</label>
+      <input type="text" id="text-edad-mascota" val="">
+      <button id="btn-edad-mascota" onclick="clickBtnEdadMascota()">Calcular</button>
+    </section>
+    
+    <!-- elemento h3 para mostrar los resultados -->
+    <section>
+      <h3 id="resultado-edad-humano"></h3>    
+      <h3 id="resultado-edad-mascota"></h3>
+    </section>
+
+
+</body>
+</html>

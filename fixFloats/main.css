@@ -1,0 +1,35 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.contenedor {
+  width: 500px;
+  margin: 0 auto ;
+  background-color: lightgray;
+  padding: 20px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.contenido {
+  background-color: white;
+  width: 70%;
+  min-height: 500px;
+  border: 1px solid black;
+  float: left;
+}
+
+.lateral {
+  background-color: darkgray; 
+  width: 25%;
+  min-height: 500px;
+  float: right;
+}
+
+.clearfix {
+  clear: both;
+}

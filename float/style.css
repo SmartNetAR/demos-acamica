@@ -1,0 +1,85 @@
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+#contenedor {
+  /* margin-top: 90px; */
+  width: 800px;
+  background-color: #ccc;
+  /* opacity: 0.4; */
+  /* min-height: 200px; */
+  margin: 0px auto 0px auto;
+  height: 100%;
+  padding: 10px;
+}
+
+.navbar {
+  background-color: #f8f8f8;
+  min-height: 90px;
+  position: fixed;
+  top: 0px;
+  width: 800px;
+}
+
+.navbar ul {
+  margin: 0px;
+  text-align: center;
+}
+
+.navbar ul li {
+  display: inline;
+  line-height: 90px;
+  
+}
+
+.floatleft {
+  margin-top: 90px;
+  height: 450px;
+  width: 25%;
+  background-color: yellow;
+  float: left;
+  margin-bottom: 40px;
+}
+
+.floatright {
+  margin-top: 90px;
+  height: 450px;
+  width: 70%;
+  background-color: red;
+  float: right;
+}
+
+/* #contenedor div {
+  opacity: 0.4;
+} */
+
+.clearfix {
+  clear: both;
+}
+
+nav ul li button{
+  width: 120px;
+  padding: 30px;
+  font-size: 16px;
+
+}
+
+footer {
+  min-height: 40px;
+  background-color: green;
+  position: fixed;
+  bottom: 0px;
+  width: 800px;
+}
+
+footer span {
+  display: block;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+}
