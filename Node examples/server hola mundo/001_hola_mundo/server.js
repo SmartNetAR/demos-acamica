@@ -1,10 +1,15 @@
-var http = require('http');
+const http = require('http');
 
-var server = http.createServer(function (req, res) {
-    res.writeHead( 200, {"content-type": "text/html"});
-    res.end("<h1>Hola Mundo!</h1>");
+http.createServer(function (req, res) {
+    res.writeHead( 200, {"content-type": "application/json"});
+    const usuario = {
+        nombre: "Juan",
+        edad: 20,
+        nacionalidad: "Argentino",
+        url: req.url
+    }
+    res.write( JSON.stringify( usuario ) );
+    res.end();
 
 })
-
-
-server.listen(8000);
+.listen(8080);
