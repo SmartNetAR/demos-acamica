@@ -1,7 +1,9 @@
 const express = require("express");
+const pi = require("./test");
+
 const app = express();
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   const empleado = {
     nombre: "Juan",
     cargo: "gerente",
@@ -10,6 +12,7 @@ app.get("/", function(req, res) {
   res.json({ saludar: saludo + empleado.nombre });
 });
 
-app.listen(3000, function() {
+app.listen(3000, function () {
+  console.log(pi);
   console.log("Example app listening on port 3000!");
 });
