@@ -11,7 +11,10 @@ exports.index = function (req, res) {
   connection.connect();
 
   connection.query('SELECT id, titulo, duracion, complejidad, descripcion, terminada, usuario FROM tasks', function (err, rows, fields) {
-    if (err) throw err;
+    if (err) {
+      res.status(500).send("Internal Error.");
+      throw err;
+    }
 
     res.json(rows);
   });
@@ -30,13 +33,22 @@ exports.show = function (req, res) {
 
   connection.connect();
 
-  connection.query('SELECT id, titulo, duracion, complejidad, descripcion, terminada, usuario FROM tasks WHERE id = ' + taskId, function (err, rows, fields) {
-    if (err) throw err;
+  connection.query('SELECT id, titulo, duracion, complejidad, descripcion, terminada, usuario FROM taskss WHERE id = ' + taskId, function (err, rows, fields) {
+    if (err) {
+      res.status(500).send("Internal Error.");
+      throw err;
+    }
 
-    if (rows.length === 0) res.json("No existe el registro")
+    if (rows.length === 0) return res.status(400).json("No existe el registro");
 
     res.json(rows[0]);
   });
 
   connection.end();
+}
+
+exports.store = function (req, res) {
+  console.log( "body", req.body );
+
+  res.status(201).json(req.body);
 }

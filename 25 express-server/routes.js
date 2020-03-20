@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get("/tareas", tareas.index);
 
+router.post("/tareas", tareas.store);
+
 router.get("/tareas/:id", tareas.show);
 
 module.exports = router;
