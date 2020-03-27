@@ -1,16 +1,33 @@
 const mysql = require('mysql');
+const db = require('../../mysql/connection.js');
 
 exports.index = function (req, res) {
-  const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'tareas_db'
-  });
 
-  connection.connect();
+  const {terminada, usuario} = req.query;
+  const arr = [];
+  
+  const sql = `
+  SELECT id, titulo, duracion, complejidad, descripcion, terminada, usuario
+  FROM tasks
+  `;
+  
+  let where = " WHERE id > 0";
+  
+  if ( terminada ) {
+    where = `
+      ${where} AND  terminada = ?
+    `;
+    arr.push(terminada == "true" ? true : false);
+  }
 
-  connection.query('SELECT id, titulo, duracion, complejidad, descripcion, terminada, usuario FROM tasks', function (err, rows, fields) {
+  if ( usuario ) {
+    where = `
+        ${where} AND usuario = ?
+    `;
+    arr.push(usuario);
+  }
+
+  db.query( sql + where, arr , function (err, rows, fields) {
     if (err) {
       res.status(500).send("Internal Error.");
       throw err;
@@ -19,21 +36,12 @@ exports.index = function (req, res) {
     res.json(rows);
   });
 
-  connection.end();
 }
 
 exports.show = function (req, res) {
   const taskId = req.params.id;
-  const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'tareas_db'
-  });
 
-  connection.connect();
-
-  connection.query('SELECT id, titulo, duracion, complejidad, descripcion, terminada, usuario FROM taskss WHERE id = ' + taskId, function (err, rows, fields) {
+  db.query('SELECT id, titulo, duracion, complejidad, descripcion, terminada, usuario FROM tasks WHERE id = ' + taskId, function (err, rows, fields) {
     if (err) {
       res.status(500).send("Internal Error.");
       throw err;
@@ -44,7 +52,6 @@ exports.show = function (req, res) {
     res.json(rows[0]);
   });
 
-  connection.end();
 }
 
 exports.store = function (req, res) {
