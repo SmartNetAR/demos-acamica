@@ -29,7 +29,7 @@ CREATE TABLE `tasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(25) DEFAULT NULL,
   `duracion` int(10) unsigned DEFAULT NULL,
-  `complejidad` varchar(25) DEFAULT NULL,
+  `id_complejidad` int(11) NOT NULL,
   `descripcion` varchar(190) DEFAULT NULL,
   `terminada` tinyint(1) DEFAULT NULL,
   `usuario` varchar(25) DEFAULT NULL,

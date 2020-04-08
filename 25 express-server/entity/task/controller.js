@@ -1,16 +1,12 @@
-const mysql = require('mysql');
 const db = require('../../mysql/connection.js');
+const queries = require('./queries.js')
 
 exports.index = function (req, res) {
 
     const { terminada, usuario } = req.query;
     const arr = [];
 
-    const sql = `
-        SELECT t.id, t.titulo, t.duracion, t.descripcion, t.terminada, t.usuario, c.nombre AS complejidad
-            FROM tasks t
-                JOIN complejidad c ON t.id_complejidad = c.id
-    `;
+    const sql = queries.obtenerTodas;
 
     let where = " WHERE t.id > 0";
 
@@ -42,10 +38,7 @@ exports.index = function (req, res) {
 exports.show = function (req, res) {
     const taskId = req.params.id;
 
-    db.query(`
-    SELECT id, titulo, duracion, descripcion, terminada, usuario, id_complejidad
-        FROM tasks WHERE id = ${taskId}
-    `, function (err, rows, fields) {
+    db.query( queries.obtenerPorId , [ taskId ], function (err, rows, fields) {
         if (err) {
             res.status(500).send("Internal Error.");
             throw err;

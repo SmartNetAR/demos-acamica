@@ -2,23 +2,30 @@ class Vista {
     constructor( controlador ) {
         this.controlador = controlador
     }
-    load() {
-        const data = this.controlador.obtenerTodos()
+    async load() {
+        const data = await this.controlador.obtenerTodos()
         this.render( data )
+
+        // this.controlador.obtenerTodos()
+        //     .then( ( tareas ) => {
+        //         this.render( tareas )
+        //     });
+        
 
         document.addEventListener("submit", (evento) => {
             evento.preventDefault();
             var titulo = document.getElementById("titulo").value;
             var descripcion = document.getElementById("descripcion").value;
             var complejidad = parseInt(document.getElementById("complejidad").value);
-            var persona = {titulo, descripcion, complejidad};
-            this.controlador.agregar(persona);
+            var tarea = {titulo, descripcion, complejidad};
+            this.controlador.agregar(tarea);
             evento.target.reset();
 
             })
     }
     
     render( tareas ) {
+        console.log("tareas", tareas )
         borrarTablas();
         tareas.forEach(cargarRegistroTabla);
     }
