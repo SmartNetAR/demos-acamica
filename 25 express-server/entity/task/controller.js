@@ -72,12 +72,33 @@ exports.show = function (req, res) {
         })
     });
 
-    
-
 }
 
 exports.store = function (req, res) {
-    console.log("body", req.body);
+    // console.log("body", req.body);
 
-    res.status(201).json(req.body);
+    // res.json( req.body );
+    const { titulo, duracion, descripcion, terminada, usuario, id_complejidad } = req.body;
+    db.query( queries.agregar, [titulo, duracion, descripcion, terminada, usuario, id_complejidad], function ( err, result ) {
+        if (err) {
+            console.log("error", err)
+            return res.status(500).send("Internal Error.");
+        }
+        console.log( "result ", result );
+        res.status(201).json( result );
+    } )
+}
+
+exports.destroy = function (req, res) {
+    const id = req.params.id;
+
+    db.query( queries.eliminarPorId, [ id ], function ( err, rows ) {
+        if (err) {
+            console.log("error", err)
+            res.status(500).send("Internal Error.");
+            throw err;
+        }
+        console.log( "rows", rows );
+        res.sendStatus(200);
+    });
 }

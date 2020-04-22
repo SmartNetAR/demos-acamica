@@ -1,13 +1,17 @@
 const express = require("express");
 
-const tareas = require("./entity/task/controller.js")
+const { index, store, show, destroy } = require("./entity/task/controller.js");
+
+const { validate } = require("./entity/task/validations.js");
 
 const router = express.Router();
 
-router.get("/tareas", tareas.index);
+router.get("/tareas", index);
 
-router.post("/tareas", tareas.store);
+router.post("/tareas", validate, store);
 
-router.get("/tareas/:id", tareas.show);
+router.get("/tareas/:id([0-9]+)", show);
+
+router.delete("/tareas/:id([0-9]+)", destroy);
 
 module.exports = router;

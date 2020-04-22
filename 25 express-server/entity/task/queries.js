@@ -7,7 +7,19 @@ module.exports = {
     obtenerPorId: `
         SELECT id, titulo, duracion, descripcion, terminada, usuario, id_complejidad
             FROM tasks WHERE id = ?
-        `
+        `,
+    eliminarPorId: `
+        DELETE FROM tasks WHERE id = ?
+        `,
+    agregar: `
+        INSERT INTO
+            tasks
+                ( titulo, duracion, descripcion, terminada, usuario, id_complejidad )
+                VALUES
+                    ( ?, ?, ?, ?, ?, ? )
+        `,
+    agregarConNombreComplejidad: `
+        INSERT INTO tasks ( titulo, duracion, descripcion, terminada, usuario, id_complejidad ) VALUES 
+        ( ?, ?, ?, ?, ?, ( SELECT id FROM complejidad WHERE nombre = ?) );
+    `
 }
-
-// INSERT INTO tasks ( titulo, descripcion, duracion, terminada, usuario, id_complejidad ) VALUES ( 'Titulo tarea sql', 'descripcion sql', 60, true, 'nombre', ( SELECT id FROM complejidad WHERE id = 2) );

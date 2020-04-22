@@ -2,10 +2,6 @@ class Controlador {
     constructor() {
     }
 
-    agregar( tarea ) {
-        console.log(tarea);
-    }
-
     // obtenerTodos() {
     //     return fetch("http://localhost:5000/tareas")
     //         .then( function( respuesta ) {
@@ -17,8 +13,14 @@ class Controlador {
     // }
 
     async obtenerTodos() {
-        const respuesta = await fetch("http://localhost:5000/tareas")
-        return await respuesta.json()
+        try {
+            const respuesta = await fetch("http://localhost:5000/tareas")
+            return await respuesta.json()
+            
+        } catch (error) {
+            // console.error("hubo un error")
+            throw error
+        }
 
     }
 
@@ -36,6 +38,6 @@ class Controlador {
     }
 
     borrar ( id ) {
-        
+        console.log(id)
     }
 }
