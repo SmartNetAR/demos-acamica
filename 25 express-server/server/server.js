@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const morgan = require('morgan');
 const app = express();
@@ -21,8 +22,10 @@ app.use(cors());
 //     return res.sendStatus(401);
 //   }
 // })
+console.log( process.env.DB_DATABASE );
 
 app.use(router);
 app.listen(port, function () {
+  console.log( process.env.DB_DATABASE );
   console.log("Example app listening on port 5000!");
 });
